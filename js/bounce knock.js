@@ -7,6 +7,7 @@ function preload() {
     game.load.image('bear', 'assets/rsz_bear.png');
     game.load.image('ball', 'assets/rsz_ball.png');
     game.load.image('ground', 'assets/platform.png');
+    game.load.image('net', 'assets/net.png');
     
 }
 
@@ -14,7 +15,6 @@ var image;
 var platforms = null;
 var knocker = null;
 var knocker2 = null;
-
 
 function create() {
 
@@ -49,6 +49,10 @@ function create() {
     //  This stops it from falling away when you jump on it
     ground.body.immovable = true;
 
+    // create the net 
+    var net = platforms.create(game.world.height - 200, 300, 'net');
+    
+    net.body.immovable = true;
     knocker.body.immovable = false;
     knocker.body.collideWorldBounds = true;
     game.physics.arcade.enable(knocker);
@@ -77,8 +81,11 @@ function update () {
     //  Enable physics between the knockers and the platform
     game.physics.arcade.collide(knocker, platforms);
     game.physics.arcade.collide(knocker2, platforms);
-    
-     //  Reset the knockers velocity (movement)
+    //  Enable physics between the platform and the ball
+    game.physics.arcade.collide(ball, platforms);
+        
+
+    //  Reset the knockers velocity (movement)
     knocker.body.velocity.x = 0;
     knocker2.body.velocity.x = 0;
     knocker.body.velocity.y = 0;
@@ -126,9 +133,9 @@ function update () {
     }
     //  Set gravity to knocker2
     knocker2.body.gravity.y = 2000;
+    
 
 }
-
 
 function render () {
 
