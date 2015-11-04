@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"kno",
+				"knocker"
+			],
+			[
+				"coll",
+				"collisionHandler"
+			],
+			[
+				"gr",
+				"ground"
+			],
+			[
 				"a",
 				"argv"
 			],
@@ -339,6 +351,22 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "js/bounce knock.js",
+			"settings":
+			{
+				"buffer_size": 5128,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "bounce.html",
+			"settings":
+			{
+				"buffer_size": 381,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -397,7 +425,8 @@
 	},
 	"expanded_folders":
 	[
-		"/home/lost/Desktop/volleyball bears"
+		"/home/lost/Desktop/volleyball bears",
+		"/home/lost/Desktop/volleyball bears/js"
 	],
 	"file_history":
 	[
@@ -532,7 +561,7 @@
 	],
 	"find":
 	{
-		"height": 34.0
+		"height": 42.0
 	},
 	"find_in_files":
 	{
@@ -549,6 +578,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"game",
+			"net",
+			"grou",
+			"==",
+			">",
+			"-->",
+			"//  Enable physics between the knockers and the ball",
 			"int)",
 			"look",
 			"generate",
@@ -669,14 +705,7 @@
 			"font-size",
 			"shadow",
 			";\n",
-			"     \n",
-			";\n",
-			"#fff",
-			"p {",
-			"shadow",
-			"color",
-			"centerY",
-			"a {"
+			"     \n"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -718,8 +747,67 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "js/bounce knock.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5128,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								250,
+								250
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "bounce.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 381,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								256,
+								256
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
 			]
 		}
 	],
