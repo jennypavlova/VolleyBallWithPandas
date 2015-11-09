@@ -1,23 +1,30 @@
 //Volleyball with Pandas
 
-var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
-
-function preload() {
-
-    game.load.image('bear', 'assets/rsz_bear.png');
-    game.load.image('ball', 'assets/rsz_ball.png');
-    game.load.image('net', 'assets/net.png');
-    
-}
-
 var image;
 var platforms;
 var knocker = null;
 var knocker2 = null;
+var ball;
 var net = null;
 var jumpTimer = 0;
+var graphics;
+var scorePlayer1 = 0;
+var scorePlayer2 = 0;
+var scoreText1;
+var scoreText2;
+
+var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
+
+function preload() {
+    game.load.image('bear', 'assets/rsz_bear.png');
+    game.load.image('ball', 'assets/rsz_ball.png');
+    game.load.image('net', 'assets/net.png');
+}
 
 function create() {
+    // Score 
+    scoreText1 = game.add.text(10, 100, 'Score: ', { fontSize: '32px', fill: '#fff' });
+    scoreText2 = game.add.text(600, 100, 'Score: ', { fontSize: '32px', fill: '#fff' });
 
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -31,7 +38,7 @@ function create() {
     // The player1 and its settings
     knocker= game.add.sprite(600, game.world.height - 150, 'bear');
     game.physics.enable([knocker,ball], Phaser.Physics.ARCADE);
-    // The player2 and its settings
+    // The player2 and its settingsa
     knocker2= game.add.sprite(50, game.world.height - 150, 'bear');
     
     game.physics.enable([knocker2,ball], Phaser.Physics.ARCADE);
@@ -154,19 +161,29 @@ function update () {
         console.log("jump");
     }
 
-    if (ball.body.onFloor()){
-        console.log('Hit');
+    // Score screen 
+    if (ball.body.onFloor())
+    {
+        console.log('Hit', ball.x);
+        if(ball.x > 0 && ball.x < 340)
+        {
+            scorePlayer1 += 1;
+            scoreText1.text = 'Score: ' + scorePlayer1;
+
+        }
+        if(ball.x > 340 && ball.x < 740)
+        {
+            scorePlayer2 += 1;
+            scoreText2.text = 'Score: ' + scorePlayer2;
+        }
         ballResetState();
     }
 
-    function ballResetState(){
+
+        function ballResetState(){
         ball.reset(250, 350);
-        console.log("test");
-        //ball.body.velocity.x = 100;
-        //ball.body.velocity.y = 400;
-
-
     }
+
 }
 
 function render () {
