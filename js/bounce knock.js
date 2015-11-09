@@ -6,13 +6,12 @@ function preload() {
 
     game.load.image('bear', 'assets/rsz_bear.png');
     game.load.image('ball', 'assets/rsz_ball.png');
-    
     game.load.image('net', 'assets/net.png');
     
 }
 
 var image;
-var platforms = null;
+var platforms;
 var knocker = null;
 var knocker2 = null;
 var net = null;
@@ -34,6 +33,7 @@ function create() {
     game.physics.enable([knocker,ball], Phaser.Physics.ARCADE);
     // The player2 and its settings
     knocker2= game.add.sprite(50, game.world.height - 150, 'bear');
+    
     game.physics.enable([knocker2,ball], Phaser.Physics.ARCADE);
 
     //  The platforms group contains the net
@@ -45,7 +45,7 @@ function create() {
 
     
     // create the net 
-    var net = platforms.create(game.world.height - 200, 400, 'net');
+    var net = platforms.create(game.world.height - 200, 450, 'net');
     game.physics.arcade.enable(net);
 
     net.body.immovable = true;
@@ -88,6 +88,7 @@ function update () {
     knocker.body.velocity.y = 0;
     knocker2.body.velocity.y = 0;
 
+    
     //  Move the knocker with the arrow keys
     if (cursors.left.isDown)
     {
@@ -110,11 +111,18 @@ function update () {
     knocker.body.gravity.y = 20000;
     if (cursors.up.isDown && knocker.body.onFloor() && game.time.now > jumpTimer)
     {
-        knocker.body.velocity.y = -10000;
-        jumpTimer = game.time.now + 1000;
+       var i = 0;
+        var interval = setInterval(function() {
+            i ++;
+            knocker.body.velocity.y -= 1000;
+            if (i == 10) clearInterval(interval);
+        }, 10)
+
+        // knocker2.body.velocity.y = -6500;
+        jumpTimer = game.time.now + 100;
         console.log("jump");
-        console.log(knocker.body.velocity.y);
     }
+    
    
     //  Move the knocker2 with the WSDA controls
     
@@ -131,14 +139,34 @@ function update () {
     else {
         knocker2.body.velocity.setTo(0, 0);
     }
-    knocker2.body.gravity.y = 10000;
+    knocker2.body.gravity.y = 14000;
     if (upKey.isDown && knocker2.body.onFloor() && game.time.now > jumpTimer)
     {
-        knocker2.body.velocity.y = -10000;
-        jumpTimer = game.time.now + 1000;
+        var i = 0;
+        var inte = setInterval(function() {
+            i ++;
+            knocker2.body.velocity.y -= 1000;
+            if (i == 10) clearInterval(inte);
+        }, 10)
+
+        // knocker2.body.velocity.y = -6500;
+        jumpTimer = game.time.now + 100;
         console.log("jump");
     }
-    
+
+    if (ball.body.onFloor()){
+        console.log('Hit');
+        ballResetState();
+    }
+
+    function ballResetState(){
+        ball.reset(250, 350);
+        console.log("test");
+        //ball.body.velocity.x = 100;
+        //ball.body.velocity.y = 400;
+
+
+    }
 }
 
 function render () {
